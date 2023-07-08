@@ -1,0 +1,53 @@
+body {
+    background-color: rgb(41, 50, 71);
+}
+
+p {
+    color:bisque;
+    font-size:40px;
+    text-align:center;
+    
+}
+
+.score {
+    margin-top:250px;
+    visibility:hidden;
+}
+
+.score2 {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    gap:300px;
+}
+.choices {
+    display:flex;
+    gap:30px;
+    justify-content:space-around;
+    align-items:center;
+}
+
+.menu {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    
+}
+button {
+    font-size:30px;
+    background-color: rgb(255, 228, 196);
+    border-radius:10px;
+    padding:30px;
+    font-size:50px;
+
+    transition: box-shadow 0.1s ;
+}
+button:hover {
+    background-color: rgb(255, 245, 236);
+}
+button:active {
+    box-shadow: 0px 0px 5px 3px rgb(233, 193, 167);
+
+}
