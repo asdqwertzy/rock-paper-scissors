@@ -3,63 +3,96 @@ body {
 }
 
 p {
-    color:bisque;
-    font-size:40px;
-    text-align:center;
+    color: bisque;
+    font-size: 40px;
+    text-align: center;
     margin: 10px;
 }
 
 .info {
-    margin-top:30px;
+    margin-top: 30px;
     min-height: 47px;
 }
+
 .score {
-    margin-top:250px;
-    visibility:hidden;
+    margin-top: 250px;
+    visibility: hidden;
 }
 
 
 
 .score2 {
-    display:flex;
+    display: flex;
     flex-direction: row;
     justify-content: center;
-    gap:300px;
+    gap: 300px;
 }
+
 .choices {
-    display:flex;
-    gap:30px;
-    justify-content:space-around;
-    align-items:center;
+    display: flex;
+    gap: 30px;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .menu {
-    display:flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 80px;
-    
+
 }
 
 .start {
-    margin-top:30px;
+    margin-top: 30px;
 }
 
 button {
-    font-size:30px;
+    font-size: 30px;
     background-color: rgb(255, 228, 196);
-    border-radius:10px;
-    padding:30px;
-    font-size:50px;
+    border-radius: 10px;
+    padding: 30px;
+    font-size: 50px;
 
-    transition: box-shadow 0.1s ;
+    transition: box-shadow 0.1s;
 }
+
 button:hover {
     background-color: rgb(255, 245, 236);
 }
+
 button:active {
     box-shadow: 0px 0px 5px 3px rgb(233, 193, 167);
-    background-color:white;
+    background-color: white;
 
 }
+
+.nudge {
+    transition: transform 0.3s ease-in-out;
+}
+
+.nudge-animation {
+    animation: nudgeAnimation 0.6s ease-in-out infinite;
+}
+
+@keyframes nudgeAnimation {
+    0% {
+      transform: translateX(-4px);
+    }
+    20% {
+      transform: translateX(4px);
+    }
+    40% {
+      transform: translateX(-4px);
+    }
+    60% {
+      transform: translateX(4px);
+    }
+    80% {
+      transform: translateX(-4px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
