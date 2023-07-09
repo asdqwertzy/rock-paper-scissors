@@ -1,5 +1,5 @@
 function getComputerChoice() {
-    choices = ["Rock", "Paper", "Scissors"]
+    var choices = ["Rock", "Paper", "Scissors"]
     var randomIndex = Math.floor(Math.random() * choices.length);
     return choices[randomIndex];
 }
@@ -17,23 +17,21 @@ function play(choice) {
         human++;
         humanscore.textContent = "You: " + human;
         scoremsg.textContent = "You win the round."
-        if(choice == "Scissors" && comp == "Paper") 
-        {
+        if (choice == "Scissors" && comp == "Paper") {
             document.querySelector(".info").textContent = `${choice} beat ${comp}`;
         }
         else {
-             document.querySelector(".info").textContent = `${choice} beats ${comp}`;
+            document.querySelector(".info").textContent = `${choice} beats ${comp}`;
         }
-        } else {
+    } else {
         pc++;
         pcscore.textContent = "Computer: " + pc;
         scoremsg.textContent = "Computer wins the round."
-        if(comp == "Scissors" && choice == "Paper") 
-        {
+        if (comp == "Scissors" && choice == "Paper") {
             document.querySelector(".info").textContent = `${comp} beat ${choice}`;
         }
         else {
-             document.querySelector(".info").textContent = `${comp} beats ${choice}`;
+            document.querySelector(".info").textContent = `${comp} beats ${choice}`;
         }
     }
     if (human >= 5) {
@@ -45,6 +43,7 @@ function play(choice) {
         pcscore.textContent = "Computer:"
         scoreboard.forEach(scoreboard => { scoreboard.style.visibility = "hidden" })
         buttons[0].style.visibility = "visible"
+        hidechoices()
     }
     else if (pc >= 5) {
         scoremsg.textContent = "You lose."
@@ -56,6 +55,7 @@ function play(choice) {
         scoreboard.forEach(scoreboard => { scoreboard.style.visibility = "hidden" })
         scoremsg.style.visibility = "visible"
         buttons[0].style.visibility = "visible"
+        hidechoices()
     }
 }
 
@@ -65,12 +65,25 @@ var started = 0;
 var human = 0;
 var pc = 0;
 
+
 var scoremsg = document.querySelector('#score')
 var humanscore = document.querySelector('.humanscore')
 var pcscore = document.querySelector('.pcscore')
 
+
 var buttons = document.querySelectorAll("button")
 var scoreboard = document.querySelectorAll('.score')
+var choicebuttons = document.querySelectorAll('.choices')
+
+
+function hidechoices() {
+    choicebuttons.forEach(button => {
+        button.style.visibility = "hidden"
+    }
+)
+}
+
+
 
 if (buttons) {
     for (var button of buttons) {
@@ -81,7 +94,10 @@ if (buttons) {
                 this.style.visibility = "hidden"
                 scoremsg.textContent = "Score:"
                 scoreboard.forEach(scoreboard => { scoreboard.style.visibility = "visible" })
-                
+                choicebuttons.forEach(button => {
+                    button.style.visibility = "visible"
+                }
+            )
 
             }
             if (started == 1) {
