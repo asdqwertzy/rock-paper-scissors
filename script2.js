@@ -1,5 +1,5 @@
 function getComputerChoice() {
-    choices = ["rock", "paper", "scissors"]
+    choices = ["Rock", "Paper", "Scissors"]
     var randomIndex = Math.floor(Math.random() * choices.length);
     return choices[randomIndex];
 }
@@ -8,22 +8,36 @@ function play(choice) {
     var comp = getComputerChoice()
     if (choice === comp) {
         scoremsg.textContent = "Tie."
+        document.querySelector(".info").textContent = `${comp} and ${choice}`;
     } else if (
-        (choice === "rock" && comp === "scissors") ||
-        (choice === "paper" && comp === "rock") ||
-        (choice === "scissors" && comp === "paper")
+        (choice === "Rock" && comp === "Scissors") ||
+        (choice === "Paper" && comp === "Rock") ||
+        (choice === "Scissors" && comp === "Paper")
     ) {
         human++;
         humanscore.textContent = "You: " + human;
         scoremsg.textContent = "You win the round."
-
-    } else {
+        if(choice == "Scissors" && comp == "Paper") 
+        {
+            document.querySelector(".info").textContent = `${choice} beat ${comp}`;
+        }
+        else {
+             document.querySelector(".info").textContent = `${choice} beats ${comp}`;
+        }
+        } else {
         pc++;
         pcscore.textContent = "Computer: " + pc;
         scoremsg.textContent = "Computer wins the round."
+        if(comp == "Scissors" && choice == "Paper") 
+        {
+            document.querySelector(".info").textContent = `${comp} beat ${choice}`;
+        }
+        else {
+             document.querySelector(".info").textContent = `${comp} beats ${choice}`;
+        }
     }
     if (human >= 5) {
-        scoremsg.textContent = "You win!"
+        scoremsg.textContent = "You win."
         pc = 0
         human = 0
         started = 0
@@ -33,7 +47,7 @@ function play(choice) {
         buttons[0].style.visibility = "visible"
     }
     else if (pc >= 5) {
-        scoremsg.textContent = "You lose!"
+        scoremsg.textContent = "You lose."
         pc = 0
         human = 0
         started = 0
@@ -73,13 +87,13 @@ if (buttons) {
             if (started == 1) {
                 switch (this.className) {
                     case "rock":
-                        play("rock");
+                        play("Rock");
                         break;
                     case "paper":
-                        play("paper");
+                        play("Paper");
                         break;
                     case "scissors":
-                        play("scissors");
+                        play("Scissors");
                         break;
                     default:
                         break;
