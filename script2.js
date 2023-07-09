@@ -7,7 +7,7 @@ function getComputerChoice() {
 function play(choice) {
     var comp = getComputerChoice()
     if (choice === comp) {
-        
+        scoremsg.textContent = "Tie."
     } else if (
         (choice === "rock" && comp === "scissors") ||
         (choice === "paper" && comp === "rock") ||
@@ -15,15 +15,20 @@ function play(choice) {
     ) {
         human++;
         humanscore.textContent = "You: " + human;
+        scoremsg.textContent = "You win the round."
+
     } else {
         pc++;
         pcscore.textContent = "Computer: " + pc;
+        scoremsg.textContent = "Computer wins the round."
     }
     if (human >= 5) {
         scoremsg.textContent = "You win!"
         pc = 0
         human = 0
         started = 0
+        humanscore.textContent = "You:"
+        pcscore.textContent = "Computer:"
         scoreboard.forEach(scoreboard => { scoreboard.style.visibility = "hidden" })
         buttons[0].style.visibility = "visible"
     }
@@ -32,7 +37,10 @@ function play(choice) {
         pc = 0
         human = 0
         started = 0
+        humanscore.textContent = "You:"
+        pcscore.textContent = "Computer:"
         scoreboard.forEach(scoreboard => { scoreboard.style.visibility = "hidden" })
+        scoremsg.style.visibility = "visible"
         buttons[0].style.visibility = "visible"
     }
 }
@@ -57,7 +65,9 @@ if (buttons) {
             if (this.className == "start" && started == 0) {
                 started = 1;
                 this.style.visibility = "hidden"
+                scoremsg.textContent = "Score:"
                 scoreboard.forEach(scoreboard => { scoreboard.style.visibility = "visible" })
+                
 
             }
             if (started == 1) {
