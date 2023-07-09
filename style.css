@@ -17,6 +17,8 @@ p {
     visibility:hidden;
 }
 
+
+
 .score2 {
     display:flex;
     flex-direction: row;
@@ -38,6 +40,11 @@ p {
     gap: 80px;
     
 }
+
+.start {
+    margin-top:30px;
+}
+
 button {
     font-size:30px;
     background-color: rgb(255, 228, 196);

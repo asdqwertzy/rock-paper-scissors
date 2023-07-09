@@ -36,17 +36,22 @@ function play(choice) {
     }
     if (human >= 5) {
         scoremsg.textContent = "You win."
+        document.querySelector(".info").textContent = `${human} - ${pc}`
         pc = 0
         human = 0
         started = 0
         humanscore.textContent = "You:"
         pcscore.textContent = "Computer:"
+        
         scoreboard.forEach(scoreboard => { scoreboard.style.visibility = "hidden" })
+        document.querySelector(".info").style.visibility = "visible"
+        scoremsg.style.visibility = "visible"
         buttons[0].style.visibility = "visible"
         hidechoices()
     }
     else if (pc >= 5) {
         scoremsg.textContent = "You lose."
+        document.querySelector(".info").textContent = `${pc} - ${human}`
         pc = 0
         human = 0
         started = 0
@@ -54,6 +59,7 @@ function play(choice) {
         pcscore.textContent = "Computer:"
         scoreboard.forEach(scoreboard => { scoreboard.style.visibility = "hidden" })
         scoremsg.style.visibility = "visible"
+        document.querySelector(".info").style.visibility = "visible"
         buttons[0].style.visibility = "visible"
         hidechoices()
     }
@@ -91,6 +97,7 @@ if (buttons) {
             console.log(this.className)
             if (this.className == "start" && started == 0) {
                 started = 1;
+                document.querySelector(".info").textContent = ""
                 this.style.visibility = "hidden"
                 scoremsg.textContent = "Score:"
                 scoreboard.forEach(scoreboard => { scoreboard.style.visibility = "visible" })
