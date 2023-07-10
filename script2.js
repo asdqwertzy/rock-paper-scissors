@@ -1,68 +1,45 @@
 function nudge(element) {
-  if (element instanceof NodeList) {
-    element.forEach(function(el) {
-      el.classList.toggle('nudge');
-      el.classList.toggle('nudge-animation');
-      setTimeout(function() {
-        el.classList.toggle('nudge');
-        el.classList.toggle('nudge-animation');
-      }, 100)
-    });
-  } else {
-    element.classList.toggle('nudge');
-    element.classList.toggle('nudge-animation');
-    setTimeout(function() {
+    if (element instanceof NodeList) {
+        element.forEach(function (el) {
+            el.classList.toggle('nudge');
+            el.classList.toggle('nudge-animation');
+            setTimeout(function () {
+                el.classList.toggle('nudge');
+                el.classList.toggle('nudge-animation');
+            }, 100)
+        });
+    } else {
         element.classList.toggle('nudge');
         element.classList.toggle('nudge-animation');
-      }, 100)
-  }
+        setTimeout(function () {
+            element.classList.toggle('nudge');
+            element.classList.toggle('nudge-animation');
+        }, 100)
+    }
 }
 
 function blinkOut(element) {
     if (element instanceof NodeList) {
-      element.forEach(function(el) {
-        el.classList.toggle('blink-animation');
-      });
-    } else {
-      element.classList.toggle('blink-animation');
-    }
-  }
-
-  function blinkIn(element) {
-    if (element instanceof NodeList) {
-      element.forEach(function(el) {
-
-        el.classList.toggle('blink-animationReverse');
-      });
-    } else {
-      element.classList.toggle('blink-animationReverse');
-
-    }
-  }
-
-  // Unfinished
-function up(element) {
-    if (element instanceof NodeList) {
-        element.forEach(function(el) {
-            el.style.transform = "translateY(-500px)"
+        element.forEach(function (el) {
+            el.classList.toggle('blink-animation');
         });
     } else {
-        element.style.transform = "translateY(-500px)"
+        element.classList.toggle('blink-animation');
     }
-
 }
 
-// Unfinished
-function down(element) {
+function blinkIn(element) {
     if (element instanceof NodeList) {
-        element.forEach(function(el) {
-            el.style.transform = "translateY(500px)"
+        element.forEach(function (el) {
+
+            el.classList.toggle('blink-animationReverse');
         });
     } else {
-        element.style.transform = "translateY(500px)"
-    }
+        element.classList.toggle('blink-animationReverse');
 
+    }
 }
+
 
 
 function getComputerChoice() {
@@ -112,7 +89,7 @@ function play(choice) {
         started = 0
         humanscore.textContent = "You: 0"
         pcscore.textContent = "Computer: 0"
-        
+
         scoreboard.forEach(scoreboard => { scoreboard.style.visibility = "hidden" })
         info.style.visibility = "visible"
         scoremsg.style.visibility = "visible"
@@ -151,12 +128,53 @@ var scoreboard = document.querySelectorAll('.score')
 var choicebuttons = document.querySelectorAll('.choices')
 
 
+function up(element) {
+    if (element instanceof NodeList) {
+        element.forEach(function (el) {
+            var currentPos = parseInt(el.dataset.position);
+            var newPos = currentPos - 500;
+            el.dataset.position = newPos;
+            el.style.transform = "translateY(" + newPos + 'px)';
+        });
+    } else {
+        var currentPos = parseInt(element.dataset.position)
+        var newPos = currentPos - 500;
+        element.dataset.position = newPos;
+
+        element.style.transform = "translateY(" + newPos + 'px)';
+    }
+}
+
+
+function down(element) {
+    if (element instanceof NodeList) {
+        element.forEach(function (el) {
+            var currentPos = parseInt(el.dataset.position);
+            var newPos = currentPos + 500;
+            el.dataset.position = newPos;
+            el.style.transform = "translateY(" + newPos + 'px)';
+        });
+    } else {
+        var currentPos = parseInt(element.dataset.position)
+        var newPos = currentPos + 500;
+        element.dataset.position = newPos;
+
+        element.style.transform = "translateY(" + newPos + 'px)';
+    }
+}
+
+
+document.querySelectorAll('*').forEach(el => {
+    el.dataset.position = 0;
+})
+
 
 function hidechoices() {
     choicebuttons.forEach(button => {
         button.style.visibility = "hidden"
     }
-)}
+    )
+}
 
 hidechoices()
 
@@ -174,7 +192,7 @@ if (buttons) {
                 choicebuttons.forEach(button => {
                     button.style.visibility = "visible"
                 }
-            )
+                )
 
             }
             if (started == 1) {
