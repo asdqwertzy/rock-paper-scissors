@@ -18,6 +18,53 @@ function nudge(element) {
   }
 }
 
+function blinkOut(element) {
+    if (element instanceof NodeList) {
+      element.forEach(function(el) {
+        el.classList.toggle('blink-animation');
+      });
+    } else {
+      element.classList.toggle('blink-animation');
+    }
+  }
+
+  function blinkIn(element) {
+    if (element instanceof NodeList) {
+      element.forEach(function(el) {
+
+        el.classList.toggle('blink-animationReverse');
+      });
+    } else {
+      element.classList.toggle('blink-animationReverse');
+
+    }
+  }
+
+  // Unfinished
+function up(element) {
+    if (element instanceof NodeList) {
+        element.forEach(function(el) {
+            el.style.transform = "translateY(-500px)"
+        });
+    } else {
+        element.style.transform = "translateY(-500px)"
+    }
+
+}
+
+// Unfinished
+function down(element) {
+    if (element instanceof NodeList) {
+        element.forEach(function(el) {
+            el.style.transform = "translateY(500px)"
+        });
+    } else {
+        element.style.transform = "translateY(500px)"
+    }
+
+}
+
+
 function getComputerChoice() {
     var choices = ["Rock", "Paper", "Scissors"]
     var randomIndex = Math.floor(Math.random() * choices.length);
