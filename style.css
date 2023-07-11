@@ -149,3 +149,43 @@ button:active {
 
     }
 }
+
+.flashred {
+    animation-name: flashred-animation;
+    animation-duration: 130ms;
+}
+
+@keyframes flashred-animation {  
+    from { background: white;; }
+    to   { background: rgba(255, 0, 0, 1); }
+}
+
+.flashgreen {
+    animation-name: flashgreen-animation;
+    animation-duration: 130ms;
+}
+
+@keyframes flashgreen-animation {  
+    from { background: white;; }
+    to   { background: rgba(12, 160, 74, 1); }
+}
+
+.flashblue {
+    animation-name: flashblue-animation;
+    animation-duration: 130ms;
+}
+
+@keyframes flashblue-animation {  
+    from { background: white;; }
+    to   { background: rgba(0, 89, 255, 1); }
+}
+
+.flashgrey {
+    animation-name: flashgrey-animation;
+    animation-duration: 130ms;
+}
+
+@keyframes flashgrey-animation {  
+    from { background: white;; }
+    to   { background: rgba(126, 126, 126, 1); }
+}

@@ -40,7 +40,39 @@ function blinkIn(element) {
     }
 }
 
+function swoop(element, val) {
+    if (element instanceof NodeList) {
+        element.forEach(function (el) {
+            var currentPos = parseInt(el.dataset.position);
+            var newPos = currentPos - val;
+            el.dataset.position = newPos;
+            el.style.transform = "translateY(" + newPos + 'px)';
+        });
+    } else {
+        var currentPos = parseInt(element.dataset.position)
+        var newPos = currentPos - val;
+        element.dataset.position = newPos;
 
+        element.style.transform = "translateY(" + newPos + 'px)';
+    }
+}
+
+
+
+
+function flash(element, color) {
+    const validColors = ["red", "green", "blue", "grey"]
+    if (!validColors.includes(color)) {
+        console.log("Invalid color:", color)
+        return;
+    }
+    else {
+        document.querySelector(`.${element}`).classList.toggle(`flash${color}`)
+        setTimeout(function () {
+            document.querySelector(`.${element}`).classList.toggle(`flash${color}`);
+        }, 130);
+    }
+}
 
 function getComputerChoice() {
     var choices = ["Rock", "Paper", "Scissors"]
@@ -50,10 +82,12 @@ function getComputerChoice() {
 
 function play(choice) {
     var comp = getComputerChoice()
+    var choiceLower = choice.toLowerCase()
     if (choice === comp) {
         scoremsg.textContent = "Tie."
         nudge(scoremsg)
         info.textContent = `${comp} and ${choice}`;
+        flash(choiceLower, "grey")
     } else if (
         (choice === "Rock" && comp === "Scissors") ||
         (choice === "Paper" && comp === "Rock") ||
@@ -69,6 +103,10 @@ function play(choice) {
             info.textContent = `${choice} beats ${comp}`;
         }
         nudge(humanscore)
+       
+        flash(choiceLower, "green")
+        
+
     } else {
         pc++;
         pcscore.textContent = "Computer: " + pc;
@@ -80,6 +118,9 @@ function play(choice) {
             info.textContent = `${comp} beats ${choice}`;
         }
         nudge(pcscore)
+        
+        flash(choiceLower, "red")
+
     }
     if (human >= 5) {
         scoremsg.textContent = "You win."
@@ -129,33 +170,16 @@ var scoreboard = document.querySelectorAll('.score')
 var choicebuttons = document.querySelectorAll('.choices')
 var scoreboard1 = document.querySelector('.score')
 
-function swoop(element, val) {
-    if (element instanceof NodeList) {
-        element.forEach(function (el) {
-            var currentPos = parseInt(el.dataset.position);
-            var newPos = currentPos - val;
-            el.dataset.position = newPos;
-            el.style.transform = "translateY(" + newPos + 'px)';
-        });
-    } else {
-        var currentPos = parseInt(element.dataset.position)
-        var newPos = currentPos - val;
-        element.dataset.position = newPos;
-
-        element.style.transform = "translateY(" + newPos + 'px)';
-    }
-}
-
 
 
 document.querySelectorAll('*').forEach(el => {
     el.dataset.position = 0;
     if (el.id) {
-      el.id += " blink";
+        el.id += " blink";
     } else {
-      el.id = "blink";
+        el.id = "blink";
     }
-  });
+});
 
 scoremsg.id = "score"
 scoreboard1.style.opacity = 0;
@@ -187,7 +211,7 @@ if (buttons) {
                     button.style.opacity = 1
                 }
                 )
-                        }
+            }
             if (started == 1) {
                 switch (this.className) {
                     case "rock":
