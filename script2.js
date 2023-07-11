@@ -183,6 +183,7 @@ document.querySelectorAll('*').forEach(el => {
 
 scoremsg.id = "score"
 scoreboard1.style.opacity = 0;
+document.querySelector("button.start").style.opacity = 1;
 function hidechoices() {
     choicebuttons.forEach(button => {
         button.style.opacity = 0

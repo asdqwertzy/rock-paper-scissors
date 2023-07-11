@@ -53,7 +53,7 @@ p {
 }
 
 button.start {
-    opacity: 1;
+    opacity: 0;
 }
 
 .start {
