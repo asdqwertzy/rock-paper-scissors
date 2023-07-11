@@ -90,10 +90,10 @@ function play(choice) {
         humanscore.textContent = "You: 0"
         pcscore.textContent = "Computer: 0"
 
-        scoreboard.forEach(scoreboard => { scoreboard.style.visibility = "hidden" })
-        info.style.visibility = "visible"
-        scoremsg.style.visibility = "visible"
-        buttons[0].style.visibility = "visible"
+        scoreboard.forEach(scoreboard => { scoreboard.style.opacity = 0 })
+        info.style.opacity = 1
+        scoremsg.style.opacity = 1
+        buttons[0].style.opacity = 1
         hidechoices()
     }
     else if (pc >= 5) {
@@ -104,10 +104,10 @@ function play(choice) {
         started = 0
         humanscore.textContent = "You: 0"
         pcscore.textContent = "Computer: 0"
-        scoreboard.forEach(scoreboard => { scoreboard.style.visibility = "hidden" })
-        scoremsg.style.visibility = "visible"
-        info.style.visibility = "visible"
-        buttons[0].style.visibility = "visible"
+        scoreboard.forEach(scoreboard => { scoreboard.style.opacity = 0 })
+        scoremsg.style.opacity = 1
+        info.style.opacity = 1
+        buttons[0].style.opacity = 1
         hidechoices()
     }
 }
@@ -128,50 +128,39 @@ var scoreboard = document.querySelectorAll('.score')
 var choicebuttons = document.querySelectorAll('.choices')
 
 
-function up(element) {
+function swoop(element, val) {
     if (element instanceof NodeList) {
         element.forEach(function (el) {
             var currentPos = parseInt(el.dataset.position);
-            var newPos = currentPos - 500;
+            var newPos = currentPos - val;
             el.dataset.position = newPos;
             el.style.transform = "translateY(" + newPos + 'px)';
         });
     } else {
         var currentPos = parseInt(element.dataset.position)
-        var newPos = currentPos - 500;
+        var newPos = currentPos - val;
         element.dataset.position = newPos;
 
         element.style.transform = "translateY(" + newPos + 'px)';
     }
 }
 
-
-function down(element) {
-    if (element instanceof NodeList) {
-        element.forEach(function (el) {
-            var currentPos = parseInt(el.dataset.position);
-            var newPos = currentPos + 500;
-            el.dataset.position = newPos;
-            el.style.transform = "translateY(" + newPos + 'px)';
-        });
-    } else {
-        var currentPos = parseInt(element.dataset.position)
-        var newPos = currentPos + 500;
-        element.dataset.position = newPos;
-
-        element.style.transform = "translateY(" + newPos + 'px)';
-    }
-}
 
 
 document.querySelectorAll('*').forEach(el => {
     el.dataset.position = 0;
-})
+    if (el.id) {
+      el.id += " blink";
+    } else {
+      el.id = "blink";
+    }
+  });
 
+scoremsg.id = "score"
 
 function hidechoices() {
     choicebuttons.forEach(button => {
-        button.style.visibility = "hidden"
+        button.style.opacity = 0
     }
     )
 }
@@ -186,11 +175,12 @@ if (buttons) {
             if (this.className == "start" && started == 0) {
                 started = 1;
                 info.textContent = ""
-                this.style.visibility = "hidden"
+                this.style.opacity = 0
                 scoremsg.textContent = "Score:"
-                scoreboard.forEach(scoreboard => { scoreboard.style.visibility = "visible" })
+                scoremsg.style.opacity = 1;
+                scoreboard.forEach(scoreboard => { scoreboard.style.opacity = 1 })
                 choicebuttons.forEach(button => {
-                    button.style.visibility = "visible"
+                    button.style.opacity = 1
                 }
                 )
 
