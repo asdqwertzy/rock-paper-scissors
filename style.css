@@ -16,10 +16,6 @@ p {
     min-height: 47px;
 }
 
-.score {
-   
-    opacity: 0;
-}
 
 #score {
     display:flex;

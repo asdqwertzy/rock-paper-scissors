@@ -90,7 +90,8 @@ function play(choice) {
         humanscore.textContent = "You: 0"
         pcscore.textContent = "Computer: 0"
 
-        scoreboard.forEach(scoreboard => { scoreboard.style.opacity = 0 })
+        document.querySelector('.score2').style.opacity = 0
+
         info.style.opacity = 1
         scoremsg.style.opacity = 1
         buttons[0].style.opacity = 1
@@ -104,7 +105,7 @@ function play(choice) {
         started = 0
         humanscore.textContent = "You: 0"
         pcscore.textContent = "Computer: 0"
-        scoreboard.forEach(scoreboard => { scoreboard.style.opacity = 0 })
+        document.querySelector('.score2').style.opacity = 0
         scoremsg.style.opacity = 1
         info.style.opacity = 1
         buttons[0].style.opacity = 1
@@ -126,7 +127,7 @@ var info = document.querySelector(".info")
 var buttons = document.querySelectorAll("button")
 var scoreboard = document.querySelectorAll('.score')
 var choicebuttons = document.querySelectorAll('.choices')
-
+var scoreboard1 = document.querySelector('.score')
 
 function swoop(element, val) {
     if (element instanceof NodeList) {
@@ -157,7 +158,7 @@ document.querySelectorAll('*').forEach(el => {
   });
 
 scoremsg.id = "score"
-
+scoreboard1.style.opacity = 0;
 function hidechoices() {
     choicebuttons.forEach(button => {
         button.style.opacity = 0
@@ -171,20 +172,22 @@ hidechoices()
 if (buttons) {
     for (var button of buttons) {
         button.addEventListener('click', function (e) {
-            console.log(this.className)
+            if (this.style.opacity === '0') {
+            }
             if (this.className == "start" && started == 0) {
                 started = 1;
                 info.textContent = ""
                 this.style.opacity = 0
                 scoremsg.textContent = "Score:"
                 scoremsg.style.opacity = 1;
+                document.querySelector('.score2').style.opacity = 1
+
                 scoreboard.forEach(scoreboard => { scoreboard.style.opacity = 1 })
                 choicebuttons.forEach(button => {
                     button.style.opacity = 1
                 }
                 )
-
-            }
+                        }
             if (started == 1) {
                 switch (this.className) {
                     case "rock":
@@ -200,6 +203,7 @@ if (buttons) {
                         break;
                 }
             }
+
         })
     };
 }
