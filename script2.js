@@ -103,9 +103,9 @@ function play(choice) {
             info.textContent = `${choice} beats ${comp}`;
         }
         nudge(humanscore)
-       
+
         flash(choiceLower, "green")
-        
+
 
     } else {
         pc++;
@@ -118,7 +118,7 @@ function play(choice) {
             info.textContent = `${comp} beats ${choice}`;
         }
         nudge(pcscore)
-        
+
         flash(choiceLower, "red")
 
     }

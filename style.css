@@ -32,6 +32,7 @@ p {
     flex-direction: row;
     justify-content: center;
     gap: 300px;
+    opacity: 0;
 }
 
 .choices {
@@ -39,6 +40,7 @@ p {
     gap: 30px;
     justify-content: space-around;
     align-items: center;
+    opacity: 0;
 }
 
 .menu {
@@ -47,7 +49,11 @@ p {
     justify-content: center;
     align-items: center;
     gap: 80px;
+    opacity: 1;
+}
 
+button.start {
+    opacity: 1;
 }
 
 .start {
